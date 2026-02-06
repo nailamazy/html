@@ -98,6 +98,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const color = e.target.style.backgroundColor;
             document.documentElement.style.setProperty('--accent', color);
+
+            // Force update for embedded styles if needed
+            const greenBar = document.querySelector('.green-bar');
+            if (greenBar) greenBar.style.backgroundColor = color;
+
+            // Update security pattern color
+            const pattern = document.querySelector('.security-pattern');
+            if (pattern) {
+                // Re-inject stylesheet rule for pattern if needed, but simpler to just toggle class or let variable handle it
+                // Variable should work if scope is root
+            }
         });
     });
 
