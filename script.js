@@ -33,19 +33,26 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Inputs Logic ---
+    console.log('Setting up input listeners...');
     Object.keys(inputs).forEach(key => {
         const input = inputs[key];
         const target = display[key];
 
+        console.log(`Checking ${key}: input=${!!input}, target=${!!target}`);
+
         if (input && target) {
             input.addEventListener('input', () => {
+                console.log(`${key} changed to: ${input.value}`);
                 target.textContent = input.value;
                 if (key === 'nim') {
                     // Update QR and SN
                     display.qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${input.value}`;
-                    display.sn.textContent = `${input.value}-A1`;
+                    if (display.sn) display.sn.textContent = `${input.value}-A1`;
                 }
             });
+            console.log(`✓ Listener attached for ${key}`);
+        } else {
+            console.warn(`✗ Missing elements for ${key}`);
         }
     });
 
@@ -127,26 +134,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Download ---
-    document.getElementById('downloadBtn').addEventListener('click', () => {
-        const card = document.getElementById('idCard');
-        const overlay = document.getElementById('loadingOverlay');
+    const downloadButton = document.getElementById('downloadBtn');
+    console.log('Download button found:', !!downloadButton);
 
-        overlay.style.display = 'flex';
+    if (downloadButton) {
+        downloadButton.addEventListener('click', () => {
+            console.log('Download button clicked!');
+            const card = document.getElementById('idCard');
+            const overlay = document.getElementById('loadingOverlay');
 
-        html2canvas(card, {
-            scale: 3,
-            useCORS: true,
-            allowTaint: true
-        }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = `KTM_${inputs.nim.value}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-            overlay.style.display = 'none';
-        }).catch(e => {
-            console.error(e);
-            alert('Error download');
-            overlay.style.display = 'none';
+            if (!card) {
+                console.error('Card element not found!');
+                alert('Error: Card element not found');
+                return;
+            }
+
+            console.log('Starting html2canvas...');
+            overlay.style.display = 'flex';
+
+            html2canvas(card, {
+                scale: 3,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                console.log('Canvas generated successfully');
+                const link = document.createElement('a');
+                link.download = `KTM_${inputs.nim.value}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                overlay.style.display = 'none';
+                console.log('Download initiated');
+            }).catch(e => {
+                console.error('html2canvas error:', e);
+                alert('Error download: ' + e.message);
+                overlay.style.display = 'none';
+            });
         });
-    });
+    } else {
+        console.error('Download button not found in DOM!');
+    }
 });
