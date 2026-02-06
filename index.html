@@ -18,7 +18,6 @@
             --sidebar: #1f2937;
             --border: #374151;
             --accent: #15803d;
-            /* Default Green */
             --text: #f3f4f6;
         }
 
@@ -151,8 +150,6 @@
             display: none;
         }
 
-        /* Hide the ugly default input */
-
         .theme-selector {
             display: flex;
             gap: 5px;
@@ -233,7 +230,6 @@
             inset: 0;
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
             opacity: 0.15;
-            /* Increased visibility slightly */
             z-index: 0;
         }
 
@@ -242,7 +238,6 @@
             position: absolute;
             inset: 0;
             background: repeating-radial-gradient(circle at 0 0, transparent 0, #15803d 1px, transparent 4px);
-            /* Tighter pattern */
             opacity: 0.08;
         }
 
@@ -318,10 +313,9 @@
 
         .blue-accent {
             width: 45px;
-            background: #1d4ed8;
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
             clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
             margin-left: -15px;
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
         }
 
         .card-body {
@@ -359,6 +353,26 @@
         }
 
         .data-table .label {
+            width: 130px;
+            font-weight: 400;
+            color: #111;
+        }
+
+        .data-table .sep {
+            width: 10px;
+            text-align: center;
+            color: #111;
+        }
+
+        .data-table .val {
+            font-weight: 700;
+            color: #000;
+        }
+
+        .card-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 25px;
             right: 25px;
             display: flex;
             justify-content: space-between;
@@ -376,13 +390,6 @@
             width: 65px;
             height: 65px;
             mix-blend-mode: multiply;
-        }
-
-        .issue-date {
-            font-size: 8px;
-            color: #444;
-            margin-top: 2px;
-            line-height: 1.1;
         }
 
         .official-sign-section {
@@ -432,6 +439,21 @@
             color: #000;
             width: 100%;
         }
+    </style>
+    font-size: 22px;
+    transform: rotate(-8deg);
+    color: #000;
+    }
+
+    .official-name {
+    font-size: 10px;
+    font-weight: 700;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1px;
+    margin-top: 2px;
+    color: #000;
+    width: 100%;
+    }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
