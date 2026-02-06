@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KTM Generator Pro</title>
+    <title>KTM Generator Real</title>
+    <!-- Fonts matching the reference -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Great+Vibes&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&family=Great+Vibes&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,267 +16,223 @@
 
 <body>
     <div class="app-container">
-        <!-- Sidebar / Control Panel -->
+        <!-- Sidebar Controls -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2><i class="fa-solid fa-id-card"></i> Data Mahasiswa</h2>
-                <button id="randomDataBtn" class="btn-sm btn-secondary"><i class="fa-solid fa-shuffle"></i>
-                    Random</button>
+                <button id="randomDataBtn" class="btn-sm"><i class="fa-solid fa-shuffle"></i> Random</button>
             </div>
 
             <div class="form-container">
-                <!-- University Settings -->
+                <!-- University Config -->
                 <div class="form-group section-title">
-                    <label>Institusi & Logo</label>
+                    <label>KOP SURAT (HEADER)</label>
                 </div>
-
                 <div class="form-group">
-                    <label>Nama Universitas</label>
-                    <input type="text" id="univNameInput" value="INDONESIAN EDUCATION UNIVERSITY"
-                        placeholder="Nama Universitas">
+                    <label>Nama Universitas (Baris 1)</label>
+                    <input type="text" id="univNameInput" value="INSTITUT TEKNOLOGI DAN SAINS NU PEKALONGAN">
                 </div>
-
                 <div class="form-group">
-                    <label>Alamat Universitas</label>
-                    <textarea id="univAddressInput" rows="2"
-                        placeholder="Alamat lengkap...">Jl. Dr. Setiabudi No.229, Isola, Kec. Sukasari, Kota Bandung, Jawa Barat 40154</textarea>
+                    <label>Alamat Universitas (Kecil di bawah)</label>
+                    <textarea id="univAddressInput"
+                        rows="2">Jl. Karangdowo No. 9, Kemoren, Karangdowo, Kec. Kedungwuni, Pekalongan, Jawa Tengah 51173</textarea>
                 </div>
-
                 <div class="form-group">
-                    <label>Upload Logo</label>
+                    <label>Logo Universitas</label>
                     <div class="file-upload-wrapper">
                         <input type="file" id="logoInput" accept="image/*">
-                        <div class="file-upload-btn"><i class="fa-solid fa-upload"></i> Pilih Logo</div>
-                        <span id="logoFileName" class="file-name">Default</span>
+                        <div class="file-upload-btn"><i class="fa-solid fa-upload"></i> Upload Logo</div>
                     </div>
                 </div>
 
+                <!-- Color Theme -->
                 <div class="form-group">
-                    <label>Tema Warna Kartu</label>
+                    <label>Warna Garis Header</label>
                     <div class="theme-selector">
-                        <button class="theme-btn active" data-color="green" style="background: #10b981;"></button>
-                        <button class="theme-btn" data-color="blue" style="background: #3b82f6;"></button>
-                        <button class="theme-btn" data-color="red" style="background: #ef4444;"></button>
-                        <button class="theme-btn" data-color="yellow" style="background: #eab308;"></button>
-                        <button class="theme-btn" data-color="purple" style="background: #8b5cf6;"></button>
-                        <button class="theme-btn" data-color="dark" style="background: #334155;"></button>
+                        <button class="theme-btn active" data-color="green" style="background: #15803d;"></button>
+                        <button class="theme-btn" data-color="blue" style="background: #1d4ed8;"></button>
+                        <button class="theme-btn" data-color="red" style="background: #b91c1c;"></button>
+                        <button class="theme-btn" data-color="yellow" style="background: #ca8a04;"></button>
+                        <button class="theme-btn" data-color="purple" style="background: #7e22ce;"></button>
+                        <button class="theme-btn" data-color="black" style="background: #334155;"></button>
                     </div>
                 </div>
 
                 <!-- Student Data -->
                 <div class="form-group section-title">
-                    <label>Data Pribadi</label>
+                    <label>DATA MAHASISWA</label>
                 </div>
-
+                <!-- Photo -->
                 <div class="form-group">
-                    <label>Nama Lengkap</label>
-                    <input type="text" id="nameInput" value="Nadia Permata" placeholder="Nama Mahasiswa">
-                </div>
-
-                <div class="row">
-                    <div class="form-group col">
-                        <label>NIM</label>
-                        <input type="text" id="nimInput" value="20241896852">
-                    </div>
-                    <div class="form-group col">
-                        <label>Tempat Lahir</label>
-                        <input type="text" id="pobInput" value="Serang">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" id="dobInput" value="2006-02-23">
-                    </div>
-                    <div class="form-group col">
-                        <label>Jenis Kelamin</label>
-                        <select id="genderInput">
-                            <option value="Perempuan">Perempuan</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Academic Data -->
-                <div class="form-group section-title">
-                    <label>Akademik</label>
-                </div>
-
-                <div class="form-group">
-                    <label>Fakultas</label>
-                    <input type="text" id="facultyInput" value="Fakultas Ilmu Sosial dan Politik">
-                </div>
-
-                <div class="row">
-                    <div class="form-group col">
-                        <label>Program Studi</label>
-                        <input type="text" id="majorInput" value="Ilmu Komunikasi">
-                    </div>
-                    <div class="form-group col">
-                        <label>Jenjang</label>
-                        <select id="degreeInput">
-                            <option value="S1">S1</option>
-                            <option value="D3">D3</option>
-                            <option value="S2">S2</option>
-                            <option value="S3">S3</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col">
-                        <label>Tahun Masuk</label>
-                        <input type="number" id="yearInput" value="2024">
-                    </div>
-                    <div class="form-group col">
-                        <label>Masa Berlaku</label>
-                        <input type="text" id="validityInput" value="2024 - 2028">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Upload Foto Mahasiswa</label>
+                    <label>Foto Mahasiswa (3x4)</label>
                     <div class="file-upload-wrapper">
                         <input type="file" id="photoInput" accept="image/*">
-                        <div class="file-upload-btn"><i class="fa-solid fa-camera"></i> Ganti Foto</div>
-                        <span id="photoFileName" class="file-name">Default</span>
+                        <div class="file-upload-btn"><i class="fa-solid fa-camera"></i> Upload Foto</div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Upload Tanda Tangan (Opsional)</label>
-                    <div class="file-upload-wrapper">
-                        <input type="file" id="signatureInput" accept="image/*">
-                        <div class="file-upload-btn"><i class="fa-solid fa-signature"></i> Upload TTD</div>
-                        <span id="signatureFileName" class="file-name">Default</span>
-                    </div>
-                    <div style="margin-top:5px; font-size: 0.8em; color: #94a3b8;">*Gunakan file PNG transparan agar
-                        terlihat asli</div>
+                <div class="form-group"><label>Nama Lengkap</label><input type="text" id="nameInput"
+                        value="Heru Firmansyah"></div>
+                <div class="form-group"><label>NIM</label><input type="text" id="nimInput" value="25110045"></div>
+                <div class="form-group"><label>Fakultas</label><input type="text" id="facultyInput" value="Teknik">
                 </div>
+                <div class="form-group"><label>Program Studi</label><input type="text" id="majorInput"
+                        value="S1 Teknik Informatika"></div>
+
+                <div class="row">
+                    <div class="form-group col"><label>Jenjang</label><input type="text" id="degreeInput" value="S1">
+                    </div>
+                    <div class="form-group col"><label>Tahun Akademik</label><input type="text" id="yearInput"
+                            value="2025 - 2029"></div>
+                </div>
+
+                <div class="form-group"><label>Masa Aktif Kartu</label><input type="text" id="validityInput"
+                        value="2025 - 2029"></div>
+                <div class="form-group"><label>Status</label><input type="text" id="statusInput"
+                        value="Mahasiswa Aktif"></div>
+
+
+                <!-- Signature Data -->
+                <div class="form-group section-title">
+                    <label>TANDA TANGAN PEJABAT</label>
+                </div>
+                <div class="form-group"><label>Jabatan (Teks Kecil)</label><input type="text" id="officialTitleInput"
+                        value="Nama Dosen Wali / Pejabat Kampus:"></div>
+                <div class="form-group">
+                    <label>Scan Tanda Tangan / Stempel</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="officialSigInput" accept="image/*">
+                        <div class="file-upload-btn"><i class="fa-solid fa-stamp"></i> Upload Stempel</div>
+                    </div>
+                </div>
+                <div class="form-group"><label>Nama Pejabat</label><input type="text" id="officialNameInput"
+                        value="M. Dzikrullah Faza, Lc., M.IRKH"></div>
+
+                <br>
             </div>
         </aside>
 
-        <!-- Main Content / Preview -->
+        <!-- Preview Area -->
         <main class="main-content">
             <header class="top-bar">
-                <h1>Preview KTM</h1>
-                <div class="actions">
-                    <button id="downloadBtn" class="btn-primary"><i class="fa-solid fa-download"></i> Download
-                        PNG</button>
-                </div>
+                <h1>KTM Generator Preview</h1>
+                <button id="downloadBtn" class="btn-primary"><i class="fa-solid fa-download"></i> Download PNG</button>
             </header>
 
             <div class="preview-area">
-                <!-- ID Card Container -->
-                <div id="idCard" class="id-card">
-                    <!-- Background Elements -->
-                    <div class="card-bg-overlay"></div>
-                    <div class="card-header-stripe"></div>
 
-                    <!-- Header Content -->
+                <!-- THE CARD -->
+                <div id="idCard" class="real-card">
+                    <!-- Background Pattern -->
+                    <div class="security-pattern"></div>
+
+                    <!-- Header -->
                     <div class="card-header">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Www.adib.ac.id.png/600px-Www.adib.ac.id.png?20180925062400"
-                            id="cardLogo" class="card-logo" alt="Logo">
-                        <div class="univ-info">
-                            <div class="country-name">REPUBLIK INDONESIA</div>
-                            <h2 id="cardUnivName">INDONESIAN EDUCATION UNIVERSITY</h2>
-                            <div id="cardAddress" class="univ-address">Jl. Dr. Setiabudi No.229, Isola, Bandung</div>
+                        <div class="logo-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Logo_NU_Pekalongan.png"
+                                id="cardLogo" alt="Logo">
+                        </div>
+                        <div class="header-text">
+                            <div class="country-text">REPUBLIK INDONESIA</div>
+                            <h2 id="cardUnivName">INSTITUT TEKNOLOGI DAN SAINS NU PEKALONGAN</h2>
+                            <div id="cardAddress" class="address-text">Jl. Karangdowo No. 9, Kemoren, Karangdowo, Kec.
+                                Kedungwuni, Pekalongan, Jawa Tengah 51173</div>
                         </div>
                     </div>
 
-                    <div class="card-title-bar">
-                        KARTU TANDA MAHASISWA
+                    <!-- Green Line -->
+                    <div class="separator-line">
+                        <div class="green-bar">KARTU TANDA MAHASISWA</div>
+                        <div class="blue-accent"></div>
                     </div>
 
-                    <!-- Main Card Body -->
+                    <!-- Body Content -->
                     <div class="card-body">
-                        <div class="photo-area">
-                            <div class="photo-frame">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" id="cardPhoto"
-                                    alt="Mahasiswa">
+                        <!-- Left: Photo -->
+                        <div class="left-section">
+                            <div class="photo-box">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" id="cardPhoto" alt="Foto">
                             </div>
-                            <div class="signature-area">
-                                <div class="ttd-label">Pemilik Kartu</div>
-                                <!-- Signature Image defaulting to font style if no image -->
-                                <div class="signature-container">
-                                    <img id="cardSignatureImg" src="" style="display: none;" alt="TTD">
-                                    <div id="cardSignatureText" class="signature-font">Nadia Permata</div>
-                                </div>
-                            </div>
+                        </div>
+
+                        <!-- Right: Data -->
+                        <div class="right-section">
+                            <table class="data-table">
+                                <tr>
+                                    <td class="label">Nama Lengkap</td>
+                                    <td class="sep">:</td>
+                                    <td class="val bold" id="cardName">Heru Firmansyah</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">NIM</td>
+                                    <td class="sep">:</td>
+                                    <td class="val" id="cardNim">25110045</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Fakultas</td>
+                                    <td class="sep">:</td>
+                                    <td class="val" id="cardFaculty">Teknik</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Program Studi</td>
+                                    <td class="sep">:</td>
+                                    <td class="val" id="cardMajor">S1 Teknik Informatika</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Jenjang</td>
+                                    <td class="sep">:</td>
+                                    <td class="val" id="cardDegree">S1</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Tahun Akademik</td>
+                                    <td class="sep">:</td>
+                                    <td class="val" id="cardYear">2025 - 2029</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Masa Aktif Kartu</td>
+                                    <td class="sep">:</td>
+                                    <td class="val" id="cardValidity">2025 - 2029</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Status</td>
+                                    <td class="sep">:</td>
+                                    <td class="val" id="cardStatus">Mahasiswa Aktif</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 
-                    <div class="data-area">
-                        <table>
-                            <tr>
-                                <td class="label">Nama</td>
-                                <td class="separator">:</td>
-                                <td class="value highlight" id="cardName">Nadia Permata</td>
-                            </tr>
-                            <tr>
-                                <td class="label">NIM</td>
-                                <td class="separator">:</td>
-                                <td class="value" id="cardNim">20241896852</td>
-                            </tr>
-                            <tr>
-                                <td class="label">TTL</td>
-                                <td class="separator">:</td>
-                                <td class="value"><span id="cardPob">Serang</span>, <span id="cardDob">23 Februari
-                                        2006</span></td>
-                            </tr>
-                            <tr>
-                                <td class="label">Fakultas</td>
-                                <td class="separator">:</td>
-                                <td class="value" id="cardFaculty">Fakultas Ilmu Sosial dan Politik</td>
-                            </tr>
-                            <tr>
-                                <td class="label">Program Studi</td>
-                                <td class="separator">:</td>
-                                <td class="value" id="cardMajor">Ilmu Komunikasi</td>
-                            </tr>
-                            <tr>
-                                <td class="label">Jenjang</td>
-                                <td class="separator">:</td>
-                                <td class="value" id="cardDegree">S1</td>
-                            </tr>
-                            <tr>
-                                <td class="label">Masa Aktif</td>
-                                <td class="separator">:</td>
-                                <td class="value"><span id="cardValidity">2024 - 2028</span> <span
-                                        class="status-badge">Mahasiswa Aktif</span></td>
-                            </tr>
-                        </table>
-                    </div>
+                    <!-- Footer Area -->
+                    <div class="card-footer">
+                        <!-- QR Code Left -->
+                        <div class="qr-section">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=25110045"
+                                id="cardQr" alt="QR">
+                            <div class="sn-text">SN: <span id="cardSn">25110045-A1</span></div>
+                            <div class="issue-date">Issue Date:<br><span id="cardIssueDate">10-09-2025</span></div>
+                        </div>
 
-                    <div class="barcode-area">
-                        <!-- Placeholder QRCode -->
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=20241896852" id="cardQr"
-                            alt="QR Code">
-                        <div class="qr-label">Scan untuk validasi</div>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <div class="footer-left">
-                        <div class="barcode-stripe">|| ||| ||||| || |||</div>
-                    </div>
-                    <div class="footer-right">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Kambing_Saanen.jpg"
-                            class="watermark-logo" style="display:none;" alt="">
-                        <!-- Simple decorative element -->
-                        <div class="chip-deco"></div>
+                        <!-- Signature Right -->
+                        <div class="official-sign-section">
+                            <div class="official-title" id="cardOfficialTitle">Nama Dosen Wali / Pejabat Kampus:</div>
+                            <div class="sign-box">
+                                <!-- Stamp/Sig Image -->
+                                <img src="" id="cardOfficialSigImg" class="stamp-img" style="display:none;">
+                                <!-- Fallback visual signature -->
+                                <div id="cardOfficialSigText" class="handwritten-fallback" style="display:block;">
+                                    Signature</div>
+                            </div>
+                            <div class="official-name" id="cardOfficialName">M. Dzikrullah Faza, Lc., M.IRKH</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="loading-overlay" id="loadingOverlay" style="display:none;">
-                <i class="fa-solid fa-spinner fa-spin"></i> Generating...
-            </div>
+            <div id="loadingOverlay"
+                style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.8); color:white; justify-content:center; align-items:center; z-index:999;">
+                Generating...</div>
+        </main>
     </div>
-    </main>
-    </div>
-
     <script src="script.js"></script>
 </body>
 
