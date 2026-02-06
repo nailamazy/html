@@ -1,0 +1,522 @@
+:root {
+    --bg-dark: #0f172a;
+    --sidebar-bg: #1e293b;
+    --card-bg: #ffffff;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #10b981; /* Green accent */
+    --accent-hover: #059669;
+    --input-bg: #334155;
+    --border: #475569;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden; /* App-like feel */
+}
+
+/* --- Layout --- */
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 350px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.2);
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(30, 41, 59, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    backdrop-filter: blur(5px);
+}
+
+.sidebar-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%);
+    position: relative;
+}
+
+/* --- Form Styles --- */
+.form-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.col {
+    flex: 1;
+}
+
+.section-title label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 10px;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 5px;
+}
+
+label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+input, select, textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 10px;
+    border-radius: 8px; /* Softer rounded */
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* File Upload Custom */
+.file-upload-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-upload-wrapper input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.file-upload-btn {
+    background-color: #334155;
+    border: 1px dashed var(--border);
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.file-upload-wrapper:hover .file-upload-btn {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.file-name {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+/* --- Main Content Header --- */
+.top-bar {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.1s, background-color 0.2s;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: var(--input-bg);
+    color: white;
+}
+
+/* --- Preview Area --- */
+.preview-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    overflow: auto;
+    position: relative;
+    /* Checkerboard pattern for transparency check */
+    background-color: rgba(255,255,255,0.02);
+    /* background-image: conic-gradient(rgba(255,255,255,0.05) 90deg, transparent 90deg); */
+    background-size: 50px 50px;
+}
+
+/* --- ID CARD STYLING (The Real Deal) --- */
+.id-card {
+    width: 638px; /* ID-1 standard scale usually 85.60 x 53.98 mm. Multiplied for web display (approx 3.7x 170px) */
+    height: 404px; /* Maintain aspect ratio */
+    background: #fff;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    /* Optional: 3D Tilt effect container would go here, keeping simple for now */
+}
+
+/* Background Design */
+.card-logo-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    opacity: 0.03;
+    z-index: 0;
+    filter: grayscale(100%);
+}
+
+.card-bg-overlay {
+    position: absolute;
+    inset: 0;
+    /* Complex Gradient for security paper look */
+    background: 
+        linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 100%),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(16, 185, 129, 0.05) 10px, rgba(16, 185, 129, 0.05) 20px);
+    z-index: 0;
+}
+
+/* Header Green Stripe */
+.card-header-stripe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: linear-gradient(100deg, #10b981 0%, #059669 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+    z-index: 1;
+}
+
+.card-header {
+    position: relative;
+    z-index: 2;
+    padding: 24px 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.card-logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.univ-info {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    flex: 1;
+}
+
+.country-name {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    opacity: 0.9;
+}
+
+.univ-info h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.univ-address {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.95;
+    max-width: 90%;
+    line-height: 1.2;
+}
+
+.card-title-bar {
+    position: absolute;
+    top: 110px;
+    right: 0;
+    background: #eab308; /* Gold/Yellow accent */
+    color: #fff;
+    padding: 5px 30px 5px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 3;
+}
+
+/* Body Layout */
+.card-body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    padding: 20px 30px;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.photo-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 120px;
+}
+
+.photo-frame {
+    width: 120px;
+    height: 150px;
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    background: #ddd;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.signature-area {
+    text-align: center;
+}
+
+.ttd-label {
+    font-size: 9px;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.signature-line {
+    width: 80px;
+    height: 30px;
+    /* Placeholder signature */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" stroke="black" stroke-width="2" fill="none" viewBox="0 0 100 30"><path d="M10,20 Q30,5 50,20 T90,15" /></svg>'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.6;
+}
+
+.data-area {
+    flex: 1;
+    font-size: 12px;
+}
+
+.data-area table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-area td {
+    padding: 3px 0;
+    vertical-align: top;
+    color: #334155;
+}
+
+.data-area .label {
+    width: 90px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.data-area .separator {
+    width: 15px;
+    text-align: center;
+}
+
+.data-area .value {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.data-area .value.highlight {
+    color: #059669; /* Match header green */
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    margin-left: 5px;
+    text-transform: uppercase;
+}
+
+.barcode-area {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.barcode-area img {
+    width: 70px;
+    height: 70px;
+    mix-blend-mode: multiply; /* Better integrating with bg */
+}
+
+.qr-label {
+    font-size: 8px;
+    color: #94a3b8;
+    text-align: center;
+}
+
+/* Footer Decoration */
+.card-footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 30px 15px;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.barcode-stripe {
+    font-family: 'Libre Barcode 39 Text', monospace; /* Fallback if not loaded, lines simulation */
+    font-size: 20px;
+    letter-spacing: -2px;
+    transform: scaleY(0.5);
+    opacity: 0.3;
+}
+
+.watermark-logo {
+    width: 40px;
+    opacity: 0.5;
+}
+
+/* --- Utilities --- */
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2rem;
+    gap: 15px;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+}
