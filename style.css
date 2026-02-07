@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+#card-preview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.ktm-card {
+    width: 540px;
+    height: 380px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.controls {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #0d9668 0%, #14b8a6 100%);
+    color: white;
+}
+
+.theme-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.theme-selector label {
+    font-weight: 600;
+    color: #333;
+}
+
+.theme-selector select {
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.theme-selector select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* KTM Card Styles */
+.card-header {
+    padding: 12px 20px 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.card-header-text {
+    flex: 1;
+}
+
+.card-header-small {
+    color: white;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.card-header-title {
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.card-header-address {
+    color: rgba(255,255,255,0.85);
+    font-size: 8px;
+    margin-top: 2px;
+}
+
+.card-banner {
+    text-align: center;
+    padding: 4px 0;
+    margin-top: -1px;
+}
+
+.card-banner-text {
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.card-body {
+    display: flex;
+    padding: 10px 16px 6px;
+    gap: 14px;
+}
+
+.card-photo {
+    width: 95px;
+    height: 120px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.card-info {
+    flex: 1;
+}
+
+.card-info table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8px;
+}
+
+.card-info td {
+    padding: 1.5px 0;
+    vertical-align: top;
+}
+
+.card-info .label-col {
+    color: #666;
+    white-space: nowrap;
+}
+
+.card-info .colon-col {
+    color: #666;
+    padding: 1.5px 4px;
+}
+
+.card-info .value-col {
+    color: #222;
+    font-weight: 500;
+}
+
+.card-info .value-bold {
+    font-weight: 700;
+}
+
+.card-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.card-qr-text {
+    font-size: 6px;
+    color: #999;
+}
+
+.card-footer {
+    border-top: 1px solid #e5e7eb;
+    padding: 4px 16px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.card-footer-left {
+    font-size: 6.5px;
+    color: #888;
+    line-height: 1.5;
+}
+
+.card-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px;
+}
+
+.card-signature-label {
+    font-size: 7.5px;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.card-signature-img {
+    height: 30px;
+    width: auto;
+    max-width: 100px;
+    object-fit: contain;
+}
+
+.card-signature-name {
+    width: 130px;
+    border-top: 1px solid #333;
+    padding-top: 2px;
+    text-align: center;
+    font-size: 6.5px;
+    color: #333;
+    font-weight: 600;
+}
+
+.card-logo-small {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.card-bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .ktm-card {
+        transform: scale(0.9);
+        transform-origin: center;
+    }
+}

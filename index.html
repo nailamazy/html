@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Kartu Tanda Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Generator Kartu Tanda Mahasiswa</h1>
+        
+        <!-- Card Preview -->
+        <div id="card-preview">
+            <div id="ktm-card" class="ktm-card">
+                <!-- Card akan di-generate di sini -->
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="generate-btn" class="btn btn-primary">🔄 Generate Kartu Baru</button>
+            <button id="download-btn" class="btn btn-success">📥 Download Kartu</button>
+            
+            <div class="theme-selector">
+                <label>Pilih Tema:</label>
+                <select id="theme-select">
+                    <option value="green">Hijau (Default)</option>
+                    <option value="blue">Biru</option>
+                    <option value="red">Merah</option>
+                    <option value="purple">Ungu</option>
+                    <option value="orange">Oranye</option>
+                    <option value="navy">Navy</option>
+                    <option value="teal">Teal</option>
+                    <option value="pink">Pink</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/JsBarcode/3.11.6/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
