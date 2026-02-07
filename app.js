@@ -82,7 +82,7 @@ const jenjangList = ["D3", "D4", "S1", "S2", "S3"];
 const dosenWaliList = ["Dr. Dedi Kurniawan, S.T., M.T.", "Prof. Dr. Siti Aminah, M.Pd.", "Dr. Bambang Susanto, M.Si.", "Dr. Rina Wulandari, M.Hum.", "Prof. Dr. Ahmad Hidayat, M.Sc.", "Dr. Dewi Lestari, S.Pd., M.Ed.", "Dr. Agus Prasetyo, M.Eng.", "Prof. Dr. Nurul Huda, M.A."];
 const bulanList = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-// Placeholder signature base64 (simple line)
+// Placeholder signature base64
 const signaturePlaceholders = [
     'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMCAyMCBRIDI1IDE1IDQwIDIwIFQgNzAgMjAgUSA4NSAyNSAxMDAgMjAiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PC9zdmc+',
     'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNSAyNSBRIDMwIDEwIDUwIDI1IFQgODUgMjUiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PC9zdmc+',
@@ -91,7 +91,10 @@ const signaturePlaceholders = [
 ];
 
 let currentStudent = null;
+let currentUniversity = null;
 let currentTheme = 'green';
+let photoDataUrl = null;
+let logoDataUrl = null;
 
 // Generate random student data
 function generateRandomStudent() {
@@ -137,6 +140,50 @@ function generateRandomStudent() {
     };
 }
 
+// Get data from form
+function getFormData() {
+    return {
+        nama: document.getElementById('input-nama').value || 'Nama Lengkap',
+        nim: document.getElementById('input-nim').value || '0000000000',
+        tempatLahir: document.getElementById('input-tempat').value || 'Tempat Lahir',
+        tanggalLahir: document.getElementById('input-tanggal').value || '01/01/2000',
+        fakultas: document.getElementById('input-fakultas').value,
+        programStudi: document.getElementById('input-prodi').value || 'Program Studi',
+        jenjang: document.getElementById('input-jenjang').value,
+        tahunAkademik: document.getElementById('input-tahun').value || '2024 - 2028',
+        masaAktif: document.getElementById('input-masa').value || '01 - Januari - 2028',
+        dosenWali: document.getElementById('input-dosen').value || 'Dr. Nama Dosen, S.T., M.T.',
+        photoUrl: photoDataUrl,
+        noKartu: `KTM-${document.getElementById('input-nim').value || '0000000000'}-${new Date().getFullYear()}`,
+        diterbitkan: new Date().toLocaleDateString('id-ID').replace(/\//g, '/'),
+        signatureIndex: Math.floor(Math.random() * signaturePlaceholders.length)
+    };
+}
+
+function getUniversityData() {
+    return {
+        name: document.getElementById('input-univ').value || 'Universitas Negeri Yogyakarta',
+        address: document.getElementById('input-alamat').value || 'Jl. Colombo No.1, Karang Malang',
+        logoUrl: logoDataUrl
+    };
+}
+
+// Load form with data
+function loadFormData(student, university) {
+    document.getElementById('input-nama').value = student.nama || '';
+    document.getElementById('input-nim').value = student.nim || '';
+    document.getElementById('input-tempat').value = student.tempatLahir || '';
+    document.getElementById('input-tanggal').value = student.tanggalLahir || '';
+    document.getElementById('input-fakultas').value = student.fakultas || 'Fakultas Keguruan dan Ilmu Pendidikan';
+    document.getElementById('input-prodi').value = student.programStudi || '';
+    document.getElementById('input-jenjang').value = student.jenjang || 'S1';
+    document.getElementById('input-tahun').value = student.tahunAkademik || '';
+    document.getElementById('input-masa').value = student.masaAktif || '';
+    document.getElementById('input-dosen').value = student.dosenWali || '';
+    document.getElementById('input-univ').value = university.name || '';
+    document.getElementById('input-alamat').value = university.address || '';
+}
+
 // Format tanggal lahir
 function formatTTL(student) {
     const bulanMap = {
@@ -157,14 +204,27 @@ function formatTTL(student) {
 function renderCard() {
     const theme = cardThemes[currentTheme];
     const student = currentStudent;
+    const university = currentUniversity;
+
+    const photoDisplay = student.photoUrl
+        ? `<img src="${student.photoUrl}" style="width: 100%; height: 100%; object-fit: cover;">`
+        : `<div class="card-photo-placeholder" style="color: ${theme.accentColor}">Foto<br>Mahasiswa</div>`;
+
+    const logoDisplay = university.logoUrl
+        ? `<img src="${university.logoUrl}" class="card-logo" style="background: white;">`
+        : `<div class="card-logo" style="background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; font-weight: 600;">LOGO</div>`;
+
+    const logoSmallDisplay = university.logoUrl
+        ? `<img src="${university.logoUrl}" class="card-logo-small" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; opacity: 0.4;">`
+        : `<div class="card-logo-small" style="width: 38px; height: 38px; border-radius: 50%; background: ${theme.photoBg}; border: 1px solid ${theme.photoBorder}33; display: flex; align-items: center; justify-content: center; font-size: 7px; color: ${theme.accentColor}; opacity: 0.6; font-weight: 600;">LOGO</div>`;
 
     const cardHTML = `
         <div class="card-header" style="background: ${theme.gradient}">
-            <div class="card-logo" style="background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; font-weight: 600;">LOGO</div>
+            ${logoDisplay}
             <div class="card-header-text">
                 <div class="card-header-small">REPUBLIK INDONESIA</div>
-                <div class="card-header-title">UNIVERSITAS NEGERI YOGYAKARTA</div>
-                <div class="card-header-address">Jl. Colombo No.1, Karang Malang</div>
+                <div class="card-header-title">${university.name.toUpperCase()}</div>
+                <div class="card-header-address">${university.address}</div>
             </div>
         </div>
         
@@ -174,7 +234,7 @@ function renderCard() {
         
         <div class="card-body">
             <div class="card-photo" style="border: 2px solid ${theme.photoBorder}; background: ${theme.photoBg}">
-                <div class="card-photo-placeholder" style="color: ${theme.accentColor}">Foto<br>Mahasiswa</div>
+                ${photoDisplay}
             </div>
             
             <div class="card-info">
@@ -248,7 +308,7 @@ function renderCard() {
                 <div class="card-signature-name">${student.dosenWali}</div>
             </div>
             
-            <div class="card-logo-small" style="background: rgba(255,255,255,0.2); border: 1px solid ${theme.photoBorder}33; display: flex; align-items: center; justify-content: center; font-size: 7px; color: ${theme.accentColor}; font-weight: 600;">LOGO</div>
+            ${logoSmallDisplay}
         </div>
         
         <div class="card-bottom-bar" style="background: ${theme.bottomBar}"></div>
@@ -291,16 +351,77 @@ function downloadCard() {
     });
 }
 
+// Handle photo upload
+function handlePhotoUpload(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            photoDataUrl = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Handle logo upload
+function handleLogoUpload(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            logoDataUrl = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
-    // Generate initial card
+    // Generate initial random card
     currentStudent = generateRandomStudent();
+    currentUniversity = {
+        name: 'Universitas Negeri Yogyakarta',
+        address: 'Jl. Colombo No.1, Karang Malang',
+        logoUrl: null
+    };
+    loadFormData(currentStudent, currentUniversity);
     renderCard();
 
-    // Generate button
-    document.getElementById('generate-btn').addEventListener('click', () => {
-        currentStudent = generateRandomStudent();
+    // Apply button - use form data
+    document.getElementById('apply-btn').addEventListener('click', () => {
+        currentStudent = getFormData();
+        currentUniversity = getUniversityData();
         renderCard();
+    });
+
+    // Generate button - create random data
+    document.getElementById('generate-btn').addEventListener('click', () => {
+        photoDataUrl = null;
+        logoDataUrl = null;
+        currentStudent = generateRandomStudent();
+        currentUniversity = {
+            name: 'Universitas Negeri Yogyakarta',
+            address: 'Jl. Colombo No.1, Karang Malang',
+            logoUrl: null
+        };
+        loadFormData(currentStudent, currentUniversity);
+        renderCard();
+    });
+
+    // Reset button - clear form
+    document.getElementById('reset-btn').addEventListener('click', () => {
+        photoDataUrl = null;
+        logoDataUrl = null;
+        document.getElementById('input-nama').value = '';
+        document.getElementById('input-nim').value = '';
+        document.getElementById('input-tempat').value = '';
+        document.getElementById('input-tanggal').value = '';
+        document.getElementById('input-prodi').value = '';
+        document.getElementById('input-tahun').value = '';
+        document.getElementById('input-masa').value = '';
+        document.getElementById('input-dosen').value = '';
+        document.getElementById('input-photo').value = '';
+        document.getElementById('input-logo').value = '';
     });
 
     // Download button
@@ -311,4 +432,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTheme = e.target.value;
         renderCard();
     });
+
+    // Photo upload
+    document.getElementById('input-photo').addEventListener('change', handlePhotoUpload);
+
+    // Logo upload
+    document.getElementById('input-logo').addEventListener('change', handleLogoUpload);
 });
